@@ -14,7 +14,7 @@ const gyp_exec = `node ${gyp_path}`
 const agora_node_ext_path = `${path.resolve(__dirname, '../build/Release/agora_node_ext.node')}`
 
 module.exports = ({
-  electronVersion='5.0.8',
+  electronVersion='12.0.0',
   runtime='electron',
   platform=process.platform,
   packageVersion,
@@ -26,7 +26,7 @@ module.exports = ({
 }) => {
   /** get command string */
   const command = [`${gyp_exec} configure`];
-  
+
   // check platform
   if (platform === 'win32') {
     command.push(`--arch=${arch} --msvs_version=${msvsVersion}`)
@@ -57,7 +57,7 @@ module.exports = ({
   logger.info("Runtime:", runtime, "\n");
 
   logger.info("Build C++ addon for Agora Electron SDK...\n")
-  
+
   shell.exec(`${gyp_exec} clean`, {silent}, (code, stdout, stderr) => {
     // handle error
     logger.info(`clean done ${stdout}`)
@@ -73,11 +73,11 @@ module.exports = ({
         logger.error(stderr);
         process.exit(1)
       }
-  
+
       if (debug) {
         // handle success
         logger.info('Complete, please go to `/build` and build manually')
-        process.exit(0)  
+        process.exit(0)
       } else {
         shell.exec(`${gyp_exec} build`, {silent}, (code, stdout, stderr) => {
           // handle error

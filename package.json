@@ -61,6 +61,7 @@
   "dependencies": {
     "bluebird": "^3.7.1",
     "download": "^7.1.0",
+    "electron": "12.2.3",
     "extract-zip": "^1.6.7",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
